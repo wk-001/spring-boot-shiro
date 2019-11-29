@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <script src="../resources/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<h2 align="center">登录页面</h2>
+<form action="/login" method="post">
+    <table border="1" align="center" cellpadding="2" cellspacing="2">
+        <tr>
+            <th align="center">用户名：</th>
+            <td>
+                <input type="text" name="userName">
+            </td>
+        </tr>
+        <tr>
+            <th align="center">密码：</th>
+            <td>
+                <input type="password" name="pwd">
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                <button type="submit">登录</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<!--未登录点击按钮显示"未登录"，登陆后可以访问有资源的按钮，没有资源的按钮显示"未授权"-->
+<input type="button" value="user:list" id="query"><br>
+<input type="button" value="user:add" id="add"><br>
+<input type="button" value="user:update" id="update"><br>
+<input type="button" value="user:delete" id="delete"><br>
+</body>
+<script type="text/javascript">
+    $("#query").on("click",function(){
+        $.post("/user/query",function(obj){
+            alert(obj.msg);
+        })
+    })
+    $("#add").on("click",function(){
+        $.post("/user/add",function(obj){
+            alert(obj.msg);
+        })
+    })
+    $("#update").on("click",function(){
+        $.post("/user/upd",function(obj){
+            alert(obj.msg);
+        })
+    })
+    $("#delete").on("click",function(){
+        $.post("/user/del",function(obj){
+            alert(obj.msg);
+        })
+    })
+</script>
+</html>
